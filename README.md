@@ -1,10 +1,9 @@
-# DeFiChain Portfolio Manager
+# DeFiChain Wizard Config Pusher
 
-Welcome to a frontend implementation for DFI Portfolio Manager bot
-## Installation
+Welcome to a temp frontend to push a Defichain Wizard Custom TX
+## Start
 
 ```
-git clone https://github.com/mastix/dfi_portfolio_manager_ui.git
-cd dfi_portfolio_manager_ui
 yarn install
+yarn dev
 ```
