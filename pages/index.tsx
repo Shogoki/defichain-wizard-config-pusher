@@ -1,6 +1,6 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import React, { useState } from 'react';
+import type { NextPage } from "next";
+import Head from "next/head";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -8,46 +8,46 @@ import {
   Typography,
   TextField,
   Alert,
-  Grid
-} from '@mui/material';
-import PageMenuBar from '../src/components/pagemenubar';
+  Grid,
+} from "@mui/material";
+import PageMenuBar from "../src/components/pagemenubar";
 import {
   Transaction,
-  CustomMessage
-} from '@defichainwizard/custom-transactions';
-import { useTranslation } from '../src/utils/translation';
-import { DFIWallet } from '../src/blockchain/DFIwallet';
-import { MainNet } from '@defichain/jellyfish-network';
+  CustomMessage,
+} from "@defichainwizard/custom-transactions";
+import { useTranslation } from "../src/utils/translation";
+import { DFIWallet } from "../src/blockchain/DFIwallet";
+import { MainNet } from "@defichain/jellyfish-network";
 
 const SEED_LENGTH = 24;
 
 const Test: NextPage = () => {
-  const [errorMessage, setErrorMessage] = useState('');
-  const [address, setAddress] = useState('');
-  const [success, setSuccess] = useState('');
-  const [configError, setConfigError] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [address, setAddress] = useState("");
+  const [success, setSuccess] = useState("");
+  const [configError, setConfigError] = useState("");
 
-  const customMessage: CustomMessage = {
-    version: '1.0',
-    vaultId: '______TBD_____',
+  const customMessage = {
+    version: "1.0",
+    vaultId: "______TBD_____",
     pause: 0,
     compounding: {
       threshold: 3,
       mode: 1,
-      token: 'DFI'
+      token: "DFI",
     },
     poolpairs: { EEM: 70, TSLA: 30 },
     rules: {
       keepMaxRatio: 155,
-      keepMinRatio: 152
-    }
+      keepMinRatio: 152,
+    },
   };
   const [configMessage, setConfigMessage] = useState(
     JSON.stringify(customMessage, null, 2)
   );
 
   const handleConfigChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setConfigError('');
+    setConfigError("");
     try {
       const message = JSON.parse(event.target.value);
     } catch (e) {
@@ -61,24 +61,24 @@ const Test: NextPage = () => {
   };
 
   const sendTransaction = async () => {
-    console.log('Sending transaction in client');
+    console.log("Sending transaction in client");
     try {
       const myAddress = address;
       const dfiWallet = new DFIWallet(getSeed(), MainNet);
       const account = await dfiWallet.getAccount(myAddress);
-      if (!account) throw 'Could not get account';
+      if (!account) throw "Could not get account";
       const wzTx = new Transaction({
         client: dfiWallet.getClient(),
         account: account,
         network: MainNet,
-        passphrase: getSeed()
+        passphrase: getSeed(),
       });
       const message: CustomMessage = JSON.parse(configMessage);
       const txId = await wzTx.send(message);
-      console.log('Transaction sent, ', txId);
+      console.log("Transaction sent, ", txId);
       setSuccess(`Transaction sent, ${txId}`);
     } catch (e) {
-      console.error('error sending transaction:', e);
+      console.error("error sending transaction:", e);
       setErrorMessage(`${e}`);
       setError(true);
     }
@@ -86,7 +86,7 @@ const Test: NextPage = () => {
 
   //FROM SEED STUFF
   const [error, setError] = useState(false);
-  const [seedState, setSeedState] = useState(['']);
+  const [seedState, setSeedState] = useState([""]);
   const [wordMap, setWordMap] = useState(new Map<number, string>());
 
   const updateWordMap = (id: number, word: string) => {
@@ -99,8 +99,8 @@ const Test: NextPage = () => {
   // checks if a seed is correct and continues if possible
   const checkSeed = (e: React.MouseEvent) => {
     setError(false);
-    setSuccess('');
-    console.log('Checking seed');
+    setSuccess("");
+    console.log("Checking seed");
     const valid = DFIWallet.checkSeed(seedState, MainNet);
     // are they valid?
     setErrorMessage(t.setup.seederror);
@@ -108,7 +108,7 @@ const Test: NextPage = () => {
     if (valid) {
       // store it in the state
       //   handleClickOpen();
-      sendTransaction().then(() => console.log('TX SENT :-)'));
+      sendTransaction().then(() => console.log("TX SENT :-)"));
     }
   };
 
@@ -138,7 +138,7 @@ const Test: NextPage = () => {
           variant="outlined"
           color="primary"
           size="small"
-          sx={{ width: '97%' }}
+          sx={{ width: "97%" }}
           onChange={changeWords}
         />
       </Grid>
@@ -178,20 +178,18 @@ const Test: NextPage = () => {
               onChange={handleAddressChange}
               variant="standard"
             />
-            <Box height={'100%'}>
+            <Box height={"100%"}>
               <Stack
                 direction="column"
                 justifyContent="space-between"
                 alignItems="center"
                 spacing={3}
-                sx={{ mt: 2 }}
-              >
+                sx={{ mt: 2 }}>
                 <Stack
                   direction="column"
                   justifyContent="space-between"
                   alignItems="center"
-                  spacing={1}
-                >
+                  spacing={1}>
                   <Alert severity="info">
                     "Your seed will only be used once to sign the Transaction.
                     It will NOT be stored"
@@ -201,8 +199,7 @@ const Test: NextPage = () => {
                     container
                     rowSpacing={1}
                     columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                    sx={{ pl: 1, pr: 1 }}
-                  >
+                    sx={{ pl: 1, pr: 1 }}>
                     {seedWordFields.map((obj) => obj)}
                   </Grid>
                 </Stack>
@@ -214,8 +211,7 @@ const Test: NextPage = () => {
                   disabled={wordMap.size !== 24}
                   variant="contained"
                   color="primary"
-                  onClick={checkSeed}
-                >
+                  onClick={checkSeed}>
                   Check Seed & Send Transaction
                 </Button>
               </Stack>
