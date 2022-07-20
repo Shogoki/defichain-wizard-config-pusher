@@ -1,0 +1,45 @@
+{
+    "general": {
+        "welcome": "Welcome to the",
+        "name": "DeFiChain Wizard",
+        "settings": "Settings",
+        "save": "Save",
+        "cancel": "Cancel"
+    },
+    "setup": {
+        "addresstext": "Please set up your wallet",
+        "addresslabel": "Wallet address",
+        "addresserror": "Wallet address not valid!",
+        "addressnextbuttonlabel": "Check address & proceed",
+        "seedtext": "Please enter your seed phrases here",
+        "seedwarning": "Your seedphrase will be encrypted and stored on your device only. Please make sure that you are alone when entering your seedphrase.",
+        "seednextbuttonlabel": "Check seed & proceed",
+        "seederror": "Your seed phrase does not seem to be correct!",
+        "seedpasswordtitle": "Set Password",
+        "seedpassworddescription": "Set Password In order to encrypt your seed on this device, please provide a password.This password will be needed anytime you want to update your configuration.Password needs to have at least a length of 6. "
+    },
+    "overview": {
+        "title": "Wallet"
+    },
+    "about": {
+        "title": "About"
+    },
+    "botsettings": {
+        "title": "Rules"
+    },
+    "botstrategies": {
+        "title": "Strategies"
+    },
+    "settings": {
+        "title": "Settings",
+        "network": "DFI network",
+        "address": "Wallet address",
+        "locale": "Language",
+        "seed": "Seed (zum Testen: 24 Worte mit Leerzeichen)",
+        "sendCustomTransaction": "Send Custom Transaction (hardcoded)!"
+
+    },
+    "messages": {
+        "dfiaddressmissing": "Please add your DFI address and seed in the settings page - otherwise this app does not make any sense! :)"
+    }
+}
