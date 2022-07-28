@@ -1,19 +1,20 @@
-workers:
-  - envs:
-      - key: WIZ_TELEGRAM_TOKEN
-        scope: RUN_AND_BUILD_TIME
-      - key: WIZ_TELEGRAM_CHATID
-        scope: RUN_AND_BUILD_TIME
-      - key: WIZ_BOT_ADDRESS
-        scope: RUN_AND_BUILD_TIME
-      - key: WIZ_SEED_PHRASE
-        scope: RUN_AND_BUILD_TIME
-        type: SECRET
-    image:
-      registry: defichainwizard
-      registry_type: DOCKER_HUB
-      repository: wizard
-      tag: v0.0.8
-    instance_count: 1
-    instance_size_slug: basic-xxs
-    name: defichai-wizard
+spec:
+  workers:
+    - envs:
+        - key: WIZ_TELEGRAM_TOKEN
+          scope: RUN_AND_BUILD_TIME
+        - key: WIZ_TELEGRAM_CHATID
+          scope: RUN_AND_BUILD_TIME
+        - key: WIZ_BOT_ADDRESS
+          scope: RUN_AND_BUILD_TIME
+        - key: WIZ_SEED_PHRASE
+          scope: RUN_AND_BUILD_TIME
+          type: SECRET
+      image:
+        registry: defichainwizard
+        registry_type: DOCKER_HUB
+        repository: wizard
+        tag: v0.0.8
+      instance_count: 1
+      instance_size_slug: basic-xxs
+      name: defichai-wizard
